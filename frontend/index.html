@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f6f4">
+  <title>Content Desk | Календарь публикаций</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Основная навигация">
+      <a class="brand" href="#calendar" aria-label="Content Desk, календарь">
+        <span class="brand-mark">cd</span>
+        <span class="brand-name">content desk</span>
+      </a>
+      <div class="workspace-label">РАБОЧЕЕ ПРОСТРАНСТВО</div>
+      <nav class="nav-list">
+        <a class="nav-item active" href="#calendar" data-view="calendar"><span class="nav-icon">▦</span>Календарь</a>
+        <a class="nav-item" href="#posts" data-view="posts"><span class="nav-icon">≡</span>Все публикации</a>
+        <a class="nav-item" href="#channels" data-view="channels"><span class="nav-icon">◉</span>Каналы</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="connection"><span class="connection-dot"></span><span id="connection-label">Подключение...</span></div>
+        <label class="role-picker" for="role-select">Текущая роль
+          <select id="role-select" aria-label="Текущая роль">
+            <option value="administrator">Администратор</option>
+            <option value="standard_user">Редактор</option>
+            <option value="guest">Гость</option>
+          </select>
+        </label>
+        <div class="profile"><span class="avatar">М</span><span><strong>Мария Смирнова</strong><small>Команда контента</small></span><span class="profile-menu">···</span></div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div class="breadcrumbs"><span>Рабочее пространство</span><span class="crumb-separator">/</span><strong id="breadcrumb-current">Календарь</strong></div>
+        <div class="topbar-actions"><button class="icon-button" id="today-button" title="Перейти к сегодняшней дате" aria-label="Перейти к сегодняшней дате">⌖</button><span class="topbar-date" id="today-label"></span><span class="topbar-divider"></span><button class="avatar small-avatar" title="Профиль Марии">М</button></div>
+      </header>
+
+      <section class="content" id="calendar-view">
+        <div class="page-heading">
+          <div><div class="eyebrow">ПЛАНИРОВАНИЕ КОНТЕНТА</div><h1>Календарь публикаций</h1><p class="page-subtitle">Планируйте публикации и отслеживайте их готовность.</p></div>
+          <button class="primary-button" id="create-post"><span class="button-plus">+</span> Новая публикация</button>
+        </div>
+        <div class="summary-row" id="summary-row"></div>
+        <section class="calendar-section" aria-label="Календарь публикаций">
+          <div class="calendar-toolbar">
+            <div class="month-control"><button class="icon-button" id="previous-month" aria-label="Предыдущий месяц">‹</button><h2 id="month-title"></h2><button class="icon-button" id="next-month" aria-label="Следующий месяц">›</button><button class="today-button" id="calendar-today">Сегодня</button></div>
+            <div class="calendar-filters"><label class="search-box"><span>⌕</span><input id="calendar-search" type="search" placeholder="Поиск публикаций" aria-label="Поиск публикаций"></label><select id="channel-filter" aria-label="Фильтр по каналу"><option value="">Все каналы</option></select><select id="status-filter" aria-label="Фильтр по статусу"><option value="">Все статусы</option><option value="draft">Черновик</option><option value="pending_approval">На согласовании</option><option value="approved">Одобрено</option><option value="scheduled">Запланировано</option><option value="published">Опубликовано</option></select></div>
+          </div>
+          <div class="calendar-grid" id="calendar-grid"></div>
+          <div class="calendar-legend"><span><i class="legend-dot instagram"></i>Instagram</span><span><i class="legend-dot facebook"></i>Facebook</span><span><i class="legend-dot linkedin"></i>LinkedIn</span><span class="legend-status"><i class="status-mark scheduled"></i>Запланировано</span><span class="legend-status"><i class="status-mark review"></i>Согласование</span></div>
+        </section>
+      </section>
+
+      <section class="content hidden" id="posts-view">
+        <div class="page-heading"><div><div class="eyebrow">КОНТЕНТ</div><h1>Все публикации</h1><p class="page-subtitle">Единый список материалов команды.</p></div><button class="primary-button" data-create-post><span class="button-plus">+</span> Новая публикация</button></div>
+        <div class="list-toolbar"><label class="search-box"><span>⌕</span><input id="posts-search" type="search" placeholder="Поиск по публикациям" aria-label="Поиск по публикациям"></label><select id="posts-status-filter" aria-label="Фильтр по статусу"><option value="">Все статусы</option><option value="draft">Черновик</option><option value="pending_approval">На согласовании</option><option value="approved">Одобрено</option><option value="scheduled">Запланировано</option><option value="published">Опубликовано</option></select></div>
+        <div class="table-wrap"><table><thead><tr><th>ПУБЛИКАЦИЯ</th><th>КАНАЛ</th><th>ДАТА</th><th>СТАТУС</th><th>ОТВЕТСТВЕННЫЙ</th><th></th></tr></thead><tbody id="posts-table-body"></tbody></table></div>
+      </section>
+
+      <section class="content hidden" id="channels-view">
+        <div class="page-heading"><div><div class="eyebrow">РАСПРЕДЕЛЕНИЕ</div><h1>Каналы</h1><p class="page-subtitle">Социальные платформы, подключённые к календарю.</p></div><button class="primary-button" id="create-channel"><span class="button-plus">+</span> Добавить канал</button></div>
+        <div class="channel-list" id="channel-list"></div>
+      </section>
+    </main>
+  </div>
+
+  <dialog class="modal" id="post-modal">
+    <form id="post-form" method="dialog">
+      <div class="modal-header"><div><div class="eyebrow">КОНТЕНТ-КАЛЕНДАРЬ</div><h2 id="post-modal-title">Новая публикация</h2></div><button class="icon-button close-button" type="button" data-close-modal aria-label="Закрыть">×</button></div>
+      <input type="hidden" name="id">
+      <label class="field-label">Название публикации<input name="title" required maxlength="180" placeholder="Например, запуск летней кампании"></label>
+      <label class="field-label">Текст публикации<textarea name="body" rows="4" maxlength="5000" placeholder="Текст, идея или краткое описание материала"></textarea></label>
+      <div class="form-grid"><label class="field-label">Канал<select name="channel_id" required></select></label><label class="field-label">Статус<select name="status"><option value="draft">Черновик</option><option value="pending_approval">На согласовании</option><option value="approved">Одобрено</option><option value="scheduled">Запланировано</option><option value="published">Опубликовано</option></select></label></div>
+      <div class="form-grid"><label class="field-label">Дата и время<input name="scheduled_at" type="datetime-local"></label><label class="field-label">Ответственный<input name="assignee" maxlength="120" placeholder="Имя участника команды"></label></div>
+      <div class="form-error" id="post-form-error" role="alert"></div>
+      <div class="modal-actions"><button class="secondary-button" type="button" data-close-modal>Отмена</button><button class="primary-button" type="submit">Сохранить публикацию</button></div>
+    </form>
+  </dialog>
+
+  <dialog class="modal compact-modal" id="channel-modal">
+    <form id="channel-form" method="dialog">
+      <div class="modal-header"><div><div class="eyebrow">РАСПРЕДЕЛЕНИЕ</div><h2>Новый канал</h2></div><button class="icon-button close-button" type="button" data-close-modal aria-label="Закрыть">×</button></div>
+      <label class="field-label">Название канала<input name="name" required maxlength="100" placeholder="Например, Instagram бренда"></label>
+      <label class="field-label">Платформа<select name="platform"><option value="instagram">Instagram</option><option value="facebook">Facebook</option><option value="linkedin">LinkedIn</option><option value="tiktok">TikTok</option><option value="other">Другая</option></select></label>
+      <div class="form-error" id="channel-form-error" role="alert"></div>
+      <div class="modal-actions"><button class="secondary-button" type="button" data-close-modal>Отмена</button><button class="primary-button" type="submit">Добавить канал</button></div>
+    </form>
+  </dialog>
+
+  <dialog class="modal detail-modal" id="detail-modal"><div id="detail-content"></div></dialog>
+  <div class="toast-region" id="toast-region" aria-live="polite"></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>
