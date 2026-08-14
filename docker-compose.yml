@@ -1,0 +1,38 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: content-desk-app
+    environment:
+      PORT: 3000
+      DATABASE_URL: postgres://student:${POSTGRES_PASSWORD:-student_password}@database:5432/practice_project
+    ports:
+      - "8081:3000"
+    depends_on:
+      database:
+        condition: service_healthy
+    restart: unless-stopped
+
+  database:
+    image: postgres:16-alpine
+    container_name: content-desk-database
+    environment:
+      POSTGRES_USER: student
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-student_password}
+      POSTGRES_DB: practice_project
+    ports:
+      - "5433:5432"
+    volumes:
+      - database_data:/var/lib/postgresql/data
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
+      - ./database/seed_data.sql:/docker-entrypoint-initdb.d/02_seed_data.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U student -d practice_project"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+    restart: unless-stopped
+
+volumes:
+  database_data:
