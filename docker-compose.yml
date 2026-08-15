@@ -9,6 +9,12 @@ services:
       DATABASE_URL: postgres://student:${POSTGRES_PASSWORD:-student_password}@database:5432/practice_project
     ports:
       - "8081:3000"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/api/health').then(response => process.exit(response.ok ? 0 : 1)).catch(() => process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 10s
     depends_on:
       database:
         condition: service_healthy

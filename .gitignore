@@ -1,0 +1,29 @@
+# Vides mainīgie un lokālie noslēpumi
+.env
+.env.*
+!.env.example
+
+# Node.js atkarības un žurnāli
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Lokāli ģenerētie faili
+coverage/
+test-results/
+playwright-report/
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Python rīki, ja tie tiks pievienoti vēlāk
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# Nekad neiekļaut Docker datubāzes datu direktorijas
+database_data/
+postgres_data/
