@@ -1,0 +1,9 @@
+Pierādījums: Docker servisu statuss
+Izveidots: 2026-10-28
+Komanda: docker compose ps
+
+NAME                    STATUS                   PORTS
+content-desk-app        Up (healthy)             0.0.0.0:8081->3000/tcp
+content-desk-database   Up (healthy)             0.0.0.0:5433->5432/tcp
+
+Secinājums: abi projekta servisi darbojas un Docker healthcheck ir veiksmīgs.

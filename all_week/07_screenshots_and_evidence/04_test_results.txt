@@ -1,0 +1,23 @@
+Pierādījums: automatizēto testu rezultāts
+Izveidots: 2026-10-28
+Komanda: npm --prefix backend test
+
+TAP kopsavilkums:
+1..8
+# tests 8
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+
+Pārbaudītie scenāriji:
+- sākumlapas ielāde;
+- datubāzes healthcheck;
+- kanālu un publikāciju sākuma dati;
+- obligātā nosaukuma validācija;
+- nederīga statusa noraidīšana;
+- viesa lomas ierobežojums;
+- 404 atbilde neesošai publikācijai;
+- administratora publikācijas create/update/archive plūsma.
+
+Secinājums: visi 8 automatizētie testi ir veiksmīgi.

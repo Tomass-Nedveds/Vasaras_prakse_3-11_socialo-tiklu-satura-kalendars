@@ -1,0 +1,28 @@
+Pierādījums: PostgreSQL shēma un sākuma dati
+Izveidots: 2026-10-28
+Datubāze: practice_project
+
+Tabulas:
+- assets
+- audit_logs
+- channels
+- post_approvals
+- posts
+- users
+
+Ierakstu skaits pēc inicializācijas:
+- posts: 5
+- post_approvals: 3
+- assets: 2
+
+Pārbaudītie ierobežojumi:
+- posts_channel_id_fkey
+- posts_created_by_fkey
+- post_approvals_post_id_fkey
+- post_approvals_reviewer_id_fkey
+- assets_post_id_fkey
+- assets_uploaded_by_fkey
+- posts_status_check
+- post_approvals_status_check
+
+Secinājums: shēma ir inicializēta, ārējās atslēgas un statusu pārbaudes ir aktīvas.

@@ -2,12 +2,12 @@
 
 ## 1. Student Information
 
-Student name:
-Group:
-Practice period:
+Student name: Tomass Nedveds    
+Group: PX-23
+Practice period: 2026-08-01 līdz 2026-08-24
 Project ID: 3-11
 Project name: Social Media Content Calendar
-GitHub repository URL:
+GitHub repository URL: 
 
 ## 2. Project Summary
 

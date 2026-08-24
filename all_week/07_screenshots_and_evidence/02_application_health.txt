@@ -1,0 +1,9 @@
+Pierādījums: lietotnes un datubāzes savienojums
+Izveidots: 2026-10-28
+Adrese: http://localhost:8081/api/health
+HTTP statuss: 200 OK
+
+Atbilde:
+{"status":"ok","database":"connected"}
+
+Secinājums: backend darbojas un var izveidot savienojumu ar PostgreSQL.

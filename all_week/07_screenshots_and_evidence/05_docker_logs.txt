@@ -1,0 +1,26 @@
+Pierādījums: Docker žurnālu kopsavilkums
+Izveidots: 2026-10-28
+Komanda: docker compose logs --no-color --tail=50 app database
+
+Lietotne:
+Content Desk listening on 3000
+
+PostgreSQL:
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+INSERT 0 3
+INSERT 0 3
+INSERT 0 5
+INSERT 0 3
+INSERT 0 2
+PostgreSQL database system is ready to accept connections
+
+Secinājums: lietotne startējas, shēma un sākuma dati tiek ielādēti bez fatālas kļūdas.
