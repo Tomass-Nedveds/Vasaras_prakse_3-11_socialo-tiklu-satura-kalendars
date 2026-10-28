@@ -1,0 +1,1 @@
+# Vasaras_prakse_3-11_socialo-tiklu-satura-kalendars
